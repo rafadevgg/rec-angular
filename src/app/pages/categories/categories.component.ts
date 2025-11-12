@@ -13,6 +13,8 @@ import { CategoryCardComponent } from '../../components/category-card/category-c
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
+  isLoading: boolean = true;
+  hasError: boolean = false;
 
   constructor(private categoryService: CategoryService) {}
 
@@ -21,12 +23,19 @@ export class CategoriesComponent implements OnInit {
   }
 
   fetchCategories(): void {
+    this.isLoading = true;
+    this.hasError = false;
+    
     this.categoryService.getCategories().subscribe({
       next: (data: Category[]) => {
-        this.categories = data;
+        this.categories = data || [];
+        this.isLoading = false;
       },
       error: (error: any) => {
         console.error('Error fetching categories', error);
+        this.hasError = true;
+        this.isLoading = false;
+        this.categories = [];
       }
     });
   }

@@ -40,25 +40,19 @@ export class ContentDetailComponent implements OnInit {
 
   fetchContentDetail(): void {
     this.contentService.getContentById(this.contentId).subscribe({
-      next: (data: Content) => {
+      next: (data: Content | null) => {
         this.content = data;
-        if (data.categoryId) {
+        if (data && data.categoryId) {
           this.fetchCategory(data.categoryId);
         }
-      },
-      error: (error: any) => {
-        console.error('Error fetching content details:', error);
       }
     });
   }
 
   fetchCategory(categoryId: number): void {
     this.categoryService.getCategoryById(categoryId.toString()).subscribe({
-      next: (data: Category) => {
+      next: (data: Category | null) => {
         this.category = data;
-      },
-      error: (error: any) => {
-        console.error('Error fetching category:', error);
       }
     });
   }
@@ -68,10 +62,7 @@ export class ContentDetailComponent implements OnInit {
     if (!isNaN(contentIdNumber)) {
       this.reviewService.getReviews(contentIdNumber).subscribe({
         next: (data: Review[]) => {
-          this.reviews = data;
-        },
-        error: (error: any) => {
-          console.error('Error fetching reviews:', error);
+          this.reviews = data || [];
         }
       });
     }

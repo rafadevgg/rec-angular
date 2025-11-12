@@ -36,11 +36,8 @@ export class CategoryDetailComponent implements OnInit {
 
   fetchCategoryDetails(): void {
     this.categoryService.getCategoryById(this.categoryId).subscribe({
-      next: (data: Category) => {
+      next: (data: Category | null) => {
         this.category = data;
-      },
-      error: (error: any) => {
-        console.error('Error fetching category details:', error);
       }
     });
   }
@@ -50,10 +47,7 @@ export class CategoryDetailComponent implements OnInit {
     if (!isNaN(categoryIdNumber)) {
       this.contentService.getContents().subscribe({
         next: (data: Content[]) => {
-          this.contents = data.filter(content => content.categoryId === categoryIdNumber);
-        },
-        error: (error: any) => {
-          console.error('Error fetching category contents:', error);
+          this.contents = (data || []).filter(content => content.categoryId === categoryIdNumber);
         }
       });
     }

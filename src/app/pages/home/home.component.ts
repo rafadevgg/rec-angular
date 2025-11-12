@@ -13,6 +13,8 @@ import { Content } from '../../models/content.model';
 })
 export class HomeComponent implements OnInit {
   featuredContents: Content[] = [];
+  isLoading: boolean = true;
+  hasError: boolean = false;
 
   constructor(private contentService: ContentService) {}
 
@@ -21,12 +23,19 @@ export class HomeComponent implements OnInit {
   }
 
   fetchFeaturedContents(): void {
+    this.isLoading = true;
+    this.hasError = false;
+    
     this.contentService.getFeaturedContents().subscribe({
       next: (data: Content[]) => {
-        this.featuredContents = data;
+        this.featuredContents = data || [];
+        this.isLoading = false;
       },
       error: (error: any) => {
         console.error('Error fetching featured contents', error);
+        this.hasError = true;
+        this.isLoading = false;
+        this.featuredContents = [];
       }
     });
   }
