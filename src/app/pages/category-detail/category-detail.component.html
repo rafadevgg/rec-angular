@@ -1,0 +1,31 @@
+<div class="category-detail-container" *ngIf="category; else loading">
+  <section class="category-header" [style.background-color]="category.color + '20'">
+    <div class="category-info">
+      <img [src]="category.image" [alt]="category.name" class="category-image" />
+      <div class="category-details">
+        <h1>{{ category.name }}</h1>
+        <p class="description">{{ category.description }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contents-section">
+    <h2>Conteúdos desta categoria</h2>
+    <div class="contents-grid" *ngIf="contents.length > 0; else noContents">
+      <app-content-card
+        *ngFor="let content of contents"
+        [content]="content"
+      ></app-content-card>
+    </div>
+    <ng-template #noContents>
+      <p class="no-contents-message">Nenhum conteúdo encontrado nesta categoria.</p>
+    </ng-template>
+  </section>
+</div>
+
+<ng-template #loading>
+  <div class="loading-container">
+    <p>Carregando categoria...</p>
+  </div>
+</ng-template>
+

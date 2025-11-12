@@ -11,9 +11,14 @@ body {
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: #0a0a0f;
-    color: white;
+    background: #f5f5f5;
+    color: #333;
     overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
 }
 
 ::-webkit-scrollbar {

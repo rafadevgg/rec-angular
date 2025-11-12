@@ -6,7 +6,7 @@ export interface Content {
   synopsis: string;
   releaseYear: number;
   duration: number;
-  categoryId: string;
+  categoryId: number;
   director: string;
   cast: string[];
   rating: string;

@@ -1,0 +1,23 @@
+<div class="home-container">
+  <section class="hero-section">
+    <h1>Bem-vindo ao Movie & Series</h1>
+    <p>Descubra os melhores filmes e séries</p>
+  </section>
+
+  <section class="featured-section">
+    <h2>Destaques</h2>
+    <div class="contents-grid" *ngIf="featuredContents.length > 0; else loading">
+      <app-content-card
+        *ngFor="let content of featuredContents"
+        [content]="content"
+      ></app-content-card>
+    </div>
+    <ng-template #loading>
+      <p class="loading-message">Carregando conteúdos em destaque...</p>
+    </ng-template>
+    <ng-template #noContent>
+      <p class="no-content-message">Nenhum conteúdo em destaque no momento.</p>
+    </ng-template>
+  </section>
+</div>
+

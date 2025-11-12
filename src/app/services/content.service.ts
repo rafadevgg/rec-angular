@@ -7,7 +7,7 @@ import { Content } from '../models/content.model';
   providedIn: 'root'
 })
 export class ContentService {
-  private apiUrl = 'https://api.example.com/contents'; // Replace with your API URL
+  private apiUrl = '/contents';
 
   constructor(private http: HttpClient) {}
 
@@ -21,5 +21,9 @@ export class ContentService {
 
   searchContents(query: string): Observable<Content[]> {
     return this.http.get<Content[]>(`${this.apiUrl}?search=${query}`);
+  }
+
+  getFeaturedContents(): Observable<Content[]> {
+    return this.http.get<Content[]>(`${this.apiUrl}?featured=true`);
   }
 }

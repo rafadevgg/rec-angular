@@ -1,0 +1,23 @@
+<div class="review-list">
+  <h2>Avaliações</h2>
+  <div class="reviews-container" *ngIf="reviews.length > 0; else noReviews">
+    <div class="review-card" *ngFor="let review of reviews">
+      <div class="review-header">
+        <img [src]="review.authorAvatar" [alt]="review.authorName" class="avatar" />
+        <div class="author-info">
+          <h3 class="author-name">{{ review.authorName }}</h3>
+          <div class="rating">
+            <span *ngFor="let _ of getFilledStars(review.rating)" class="star filled">★</span>
+            <span *ngFor="let _ of getEmptyStars(review.rating)" class="star">☆</span>
+          </div>
+        </div>
+      </div>
+      <h4 class="review-title">{{ review.title }}</h4>
+      <p class="review-comment">{{ review.comment }}</p>
+    </div>
+  </div>
+  <ng-template #noReviews>
+    <p class="no-reviews">Nenhuma avaliação disponível ainda.</p>
+  </ng-template>
+</div>
+
