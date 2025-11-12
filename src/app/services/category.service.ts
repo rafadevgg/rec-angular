@@ -7,10 +7,11 @@ import { Category } from '../models/category.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class CategoryService {
   private apiUrl = '/categories';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

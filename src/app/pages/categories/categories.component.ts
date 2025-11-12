@@ -11,12 +11,13 @@ import { CategoryCardComponent } from '../../components/category-card/category-c
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.scss']
 })
+
 export class CategoriesComponent implements OnInit {
   categories: Category[] = [];
   isLoading: boolean = true;
   hasError: boolean = false;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -25,7 +26,7 @@ export class CategoriesComponent implements OnInit {
   fetchCategories(): void {
     this.isLoading = true;
     this.hasError = false;
-    
+
     this.categoryService.getCategories().subscribe({
       next: (data: Category[]) => {
         this.categories = data || [];

@@ -7,6 +7,7 @@ import { Review } from '../models/review.model';
 @Injectable({
   providedIn: 'root'
 })
+
 export class ReviewService {
   private apiUrl = '/reviews';
 
