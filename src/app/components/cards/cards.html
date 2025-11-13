@@ -1,0 +1,95 @@
+<div class="cards-container">
+  <!-- Grid de Cards -->
+  <div class="cards-grid">
+    <div *ngFor="let content of contents" class="card">
+      <div class="card-image-wrapper">
+        <img [src]="content.image" [alt]="content.title" class="card-image" />
+        <div class="card-overlay">
+          <button class="btn-more-info" (click)="openModal(content)">
+            Saiba mais →
+          </button>
+        </div>
+      </div>
+      <div class="card-badge">{{ content.category }}</div>
+    </div>
+  </div>
+
+  <!-- Modal de Detalhes -->
+  <div class="modal" [class.open]="isModalOpen" *ngIf="isModalOpen && selectedContent">
+    <div class="modal-overlay" (click)="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" (click)="closeModal()">×</button>
+
+      <div class="modal-header">
+        <img [src]="selectedContent.image" [alt]="selectedContent.title" class="modal-image" />
+      </div>
+
+      <div class="modal-body">
+        <div class="modal-info">
+          <h1 class="modal-title">{{ selectedContent.title }}</h1>
+
+          <div class="modal-meta">
+            <div class="meta-item">
+              <span class="meta-label">Ano:</span>
+              <span class="meta-value">{{ selectedContent.year }}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Duração:</span>
+              <span class="meta-value">{{ selectedContent.duration }}</span>
+            </div>
+            <div class="meta-item">
+              <span class="meta-label">Categoria:</span>
+              <span class="meta-value">{{ selectedContent.category }}</span>
+            </div>
+          </div>
+
+          <div class="modal-rating">
+            <div class="rating-stars">
+              <span
+                *ngFor="let star of getRatingStars(selectedContent.rating)"
+                class="star"
+                [class.filled]="star === 1"
+              >
+                ★
+              </span>
+            </div>
+            <span class="rating-value">{{ selectedContent.rating }}/10</span>
+          </div>
+
+          <p class="modal-description">{{ selectedContent.description }}</p>
+
+          <div class="modal-details">
+            <div class="detail-section">
+              <h3>Diretor</h3>
+              <p>{{ selectedContent.director }}</p>
+            </div>
+
+            <div class="detail-section">
+              <h3>Elenco</h3>
+              <p>{{ selectedContent.cast.join(', ') }}</p>
+            </div>
+          </div>
+
+          <div *ngIf="selectedContent.reviews && selectedContent.reviews.length > 0" class="reviews-section">
+            <h3>Avaliações</h3>
+            <div class="reviews-list">
+              <div *ngFor="let review of selectedContent.reviews" class="review-item">
+                <div class="review-header">
+                  <strong>{{ review.author }}</strong>
+                  <span class="review-date">{{ review.date }}</span>
+                </div>
+                <div class="review-rating">
+                  <span *ngFor="let i of [1, 2, 3, 4, 5]" class="review-star" [class.filled]="i <= review.rating">
+                    ★
+                  </span>
+                </div>
+                <p class="review-comment">{{ review.comment }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
