@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-10.11": {
+    "rec-angular-oficial": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,10 +66,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "angular-10.11:build:production"
+              "buildTarget": "rec-angular-oficial:build:production"
             },
             "development": {
-              "buildTarget": "angular-10.11:build:development"
+              "buildTarget": "rec-angular-oficial:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "679bf1ab-5bb3-4d94-9c3e-2c80af3dfdd3"
+    "analytics": "d9f6bcbe-d837-4c7c-8bec-514f10888f14"
   }
 }
