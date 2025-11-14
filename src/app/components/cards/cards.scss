@@ -1,11 +1,11 @@
 // Cores
-$primary-bg: #0f0f0f;
-$secondary-bg: #1a1a1a;
-$text-primary: #ffffff;
-$text-secondary: #b3b3b3;
+$primary-bg: #ffffff;
+$secondary-bg: #f5f5f5;
+$text-primary: #000000;
+$text-secondary: #666666;
 $accent: #4a9eff;
 $accent-hover: #357abd;
-$border-color: #333333;
+$border-color: #e0e0e0;
 
 // Breakpoints
 $mobile: 480px;
@@ -14,16 +14,16 @@ $desktop: 1024px;
 
 // Grid de Cards
 .cards-container {
-  padding: 3rem 2rem;
+  padding: 3rem 0;
   background-color: $primary-bg;
   min-height: 100vh;
 
   @media (max-width: $tablet) {
-    padding: 2rem 1rem;
+    padding: 2rem 0;
   }
 
   @media (max-width: $mobile) {
-    padding: 1.5rem 0.75rem;
+    padding: 1.5rem 0;
   }
 }
 
@@ -31,17 +31,20 @@ $desktop: 1024px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 2rem;
 
   @media (max-width: $tablet) {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 1.5rem;
+    padding: 0 1rem;
   }
 
   @media (max-width: $mobile) {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
+    padding: 0 0.75rem;
   }
 }
 
