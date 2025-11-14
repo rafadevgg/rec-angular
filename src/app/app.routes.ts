@@ -15,16 +15,10 @@ import { AvaliacoesConteudo } from './views/avaliacoes-conteudo/avaliacoes-conte
  * - /conteudo/:id/avaliacoes : Avaliações de um filme/série
  */
 export const routes: Routes = [
-    // Rota inicial - mostra todos os conteúdos
+    
     { path: '', component: ListaConteudos },
-    
-    // Rota para listar conteúdos de uma categoria específica
-    // :id é um parâmetro dinâmico (ex: /categoria/1)
     { path: 'categoria/:id', component: ListaConteudos },
-    
-    // Rota para ver detalhes de um conteúdo específico
     { path: 'conteudo/:id', component: DetalhesConteudo },
-    
-    // Rota para ver/adicionar avaliações de um conteúdo
     { path: 'conteudo/:id/avaliacoes', component: AvaliacoesConteudo }
+
 ];
