@@ -1,0 +1,19 @@
+// src/app/components/card-content/card-content.scss
+
+/**
+ * Estilos para o card de conteúdo
+ */
+
+// Efeito hover no card
+.hover-card {
+    // Transição suave para as transformações
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    // Quando o mouse passa por cima
+    &:hover {
+        // Move o card 5px para cima
+        transform: translateY(-5px);
+        // Aumenta a sombra para dar efeito de elevação
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+}

@@ -1,0 +1,75 @@
+<!-- src/app/views/detalhes-conteudo/detalhes-conteudo.html -->
+
+<div class="container py-5">
+  
+  <!-- Se ainda não carregou, mostra loading -->
+  @if (!conteudo) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Carregando...</span>
+      </div>
+      <p class="mt-3 text-muted">Carregando detalhes...</p>
+    </div>
+  }
+  
+  <!-- Se já carregou, mostra os detalhes -->
+  @else {
+    <div class="row">
+      
+      <!-- Coluna da imagem -->
+      <div class="col-lg-4 mb-4">
+        <img [src]="conteudo.image" 
+             [alt]="conteudo.title" 
+             class="img-fluid rounded shadow">
+      </div>
+      
+      <!-- Coluna das informações -->
+      <div class="col-lg-8">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            
+            <!-- Título -->
+            <h1 class="display-5 fw-bold mb-3">
+              {{conteudo.title}}
+            </h1>
+            
+            <!-- Informações básicas -->
+            <div class="mb-4">
+              <span class="badge bg-primary me-2">
+                {{conteudo.releaseYear}}
+              </span>
+              <span class="badge bg-secondary">
+                {{conteudo.type === 'movie' ? 'Filme' : 'Série'}}
+              </span>
+            </div>
+            
+            <!-- Descrição -->
+            <h5 class="mb-3">Sinopse</h5>
+            <p class="text-muted mb-4">
+              {{conteudo.description}}
+            </p>
+            
+            <!-- Botões de ação -->
+            <div class="d-flex gap-2">
+              <!-- Botão voltar -->
+              <a routerLink="/" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left me-2"></i>
+                Voltar
+              </a>
+              
+              <!-- Botão ver avaliações -->
+              <a [routerLink]="'/conteudo/' + conteudo.id + '/avaliacoes'" 
+                 class="btn btn-primary">
+                <i class="bi bi-star-fill me-2"></i>
+                Ver Avaliações
+              </a>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  }
+  
+</div>

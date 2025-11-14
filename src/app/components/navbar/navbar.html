@@ -1,50 +1,70 @@
-<nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
-    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+<!-- src/app/components/navbar/navbar.html -->
 
-    <div class="container-fluid">
-
-        <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
-            <i class="bi bi-mortarboard-fill me-2 fs-4"></i>
-            <span>Jungleflix</span>
-        </a>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item">
-
-                    <a class="nav-link px-3" routerLink="/" routerLinkActive="active">
-                        <i class="bi bi-people-fill me-1"></i>
-                        Início
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link px-3" routerLink="/filmes" routerLinkActive="active">
-                        <i class="bi bi-file-text-fill me-1"></i>
-                        Filmes
-                    </a>
-
-                </li>
-
-                <li class="nav-item">
-
-                    <a class="nav-link px-3" routerLink="/series" routerLinkActive="active">
-                        <i class="bi bi-file-text-fill me-1"></i>
-                        Séries
-                    </a>
-
-                </li>
-
-            </ul>
-        </div>
-
+<!-- 
+  Barra de navegação do site
+  Contém:
+  - Logo/nome do site
+  - Link para home (todos os conteúdos)
+  - Menu dropdown com categorias
+-->
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-dark">
+  <div class="container-fluid">
+    
+    <!-- Logo/Nome do site -->
+    <a class="navbar-brand fw-bold" routerLink="/">
+      <i class="bi bi-film me-2 fs-4"></i>
+      <span>SENAI Streams</span>
+    </a>
+    
+    <!-- Botão para menu mobile -->
+    <button class="navbar-toggler" type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Menu de navegação -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        
+        <!-- Link para home -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/" routerLinkActive="active">
+            <i class="bi bi-house-fill me-1"></i>
+            Início
+          </a>
+        </li>
+        
+        <!-- Dropdown de categorias -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" 
+             href="#" 
+             role="button" 
+             data-bs-toggle="dropdown">
+            <i class="bi bi-list-stars me-1"></i>
+            Categorias
+          </a>
+          
+          <!-- Menu das categorias -->
+          <ul class="dropdown-menu">
+            <!-- 
+              Loop que cria um item de menu para cada categoria
+              @for é a nova sintaxe do Angular para loops
+            -->
+            @for (categoria of categorias; track categoria.id) {
+              <li>
+                <!-- Link para a categoria -->
+                <a class="dropdown-item" 
+                   [routerLink]="'/categoria/' + categoria.id">
+                  {{categoria.name}}
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+        
+      </ul>
     </div>
+    
+  </div>
 </nav>

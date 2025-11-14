@@ -1,0 +1,44 @@
+<!-- src/app/components/card-content/card-content.html -->
+
+<!-- 
+  Card que mostra as informações de um filme/série
+  - Imagem do poster
+  - Título
+  - Ano de lançamento
+  - Botão para ver detalhes
+-->
+<div class="card h-100 shadow-sm border-0 hover-card">
+  
+  <!-- Imagem do filme/série -->
+  <img [src]="content.image" 
+       [alt]="content.title" 
+       class="card-img-top" 
+       style="height: 300px; object-fit: cover;">
+  
+  <!-- Corpo do card com informações -->
+  <div class="card-body">
+    <h5 class="card-title">{{content.title}}</h5>
+    
+    <!-- Badge mostrando o ano -->
+    <span class="badge bg-secondary mb-2">{{content.releaseYear}}</span>
+    
+    <!-- Descrição limitada a 100 caracteres -->
+    <p class="card-text text-muted small">
+      {{content.description.substring(0, 100)}}...
+    </p>
+  </div>
+  
+  <!-- Rodapé com botão de ação -->
+  <div class="card-footer bg-white border-0">
+    <!-- 
+      RouterLink cria um link para a página de detalhes
+      Vai para /conteudo/ID_DO_FILME
+    -->
+    <a [routerLink]="'/conteudo/' + content.id"
+       class="btn btn-primary w-100">
+      <i class="bi bi-info-circle me-2"></i>
+      Ver Detalhes
+    </a>
+  </div>
+  
+</div>

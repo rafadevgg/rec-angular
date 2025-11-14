@@ -1,0 +1,152 @@
+<!-- src/app/views/avaliacoes-conteudo/avaliacoes-conteudo.html -->
+
+<div class="container py-5">
+  
+  <!-- Cabeçalho -->
+  <div class="row mb-4">
+    <div class="col">
+      <h1 class="display-5 fw-bold mb-3">
+        <i class="bi bi-star-fill me-3"></i>
+        Avaliações
+      </h1>
+      
+      @if (conteudo) {
+        <p class="lead text-muted">{{conteudo.title}}</p>
+      }
+      
+      <!-- Botões de ação -->
+      <div class="d-flex gap-2 mb-4">
+        <a [routerLink]="'/conteudo/' + novaAvaliacao.contentId" 
+           class="btn btn-outline-secondary">
+          <i class="bi bi-arrow-left me-2"></i>
+          Voltar
+        </a>
+        
+        <button (click)="mostrarFormulario = !mostrarFormulario" 
+                class="btn btn-primary">
+          <i class="bi bi-plus-circle me-2"></i>
+          {{mostrarFormulario ? 'Cancelar' : 'Nova Avaliação'}}
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Formulário de nova avaliação -->
+  @if (mostrarFormulario) {
+    <div class="row mb-4">
+      <div class="col-lg-8 mx-auto">
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h4 class="mb-4">Adicionar Avaliação</h4>
+            
+            <form (ngSubmit)="salvarAvaliacao()">
+              
+              <!-- Campo Nome -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-person me-2"></i>
+                  Seu Nome
+                </label>
+                <input type="text" 
+                       class="form-control" 
+                       [(ngModel)]="novaAvaliacao.author"
+                       name="author"
+                       placeholder="Digite seu nome"
+                       required>
+              </div>
+              
+              <!-- Campo Nota -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-star me-2"></i>
+                  Nota (1 a 5)
+                </label>
+                <select class="form-select" 
+                        [(ngModel)]="novaAvaliacao.rating"
+                        name="rating"
+                        required>
+                  <option value="0">Selecione uma nota</option>
+                  <option value="1">1 - Péssimo</option>
+                  <option value="2">2 - Ruim</option>
+                  <option value="3">3 - Regular</option>
+                  <option value="4">4 - Bom</option>
+                  <option value="5">5 - Excelente</option>
+                </select>
+              </div>
+              
+              <!-- Campo Comentário -->
+              <div class="mb-3">
+                <label class="form-label fw-semibold">
+                  <i class="bi bi-chat-text me-2"></i>
+                  Comentário
+                </label>
+                <textarea class="form-control" 
+                          rows="4"
+                          [(ngModel)]="novaAvaliacao.comment"
+                          name="comment"
+                          placeholder="Compartilhe sua opinião sobre este conteúdo..."
+                          required></textarea>
+              </div>
+              
+              <!-- Botão enviar -->
+              <button type="submit" class="btn btn-primary">
+                <i class="bi bi-check-circle me-2"></i>
+                Salvar Avaliação
+              </button>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  
+  <!-- Lista de avaliações -->
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      
+      @if (avaliacoes.length === 0) {
+        <div class="text-center py-5">
+          <p class="text-muted">
+            Nenhuma avaliação ainda. Seja o primeiro a avaliar!
+          </p>
+        </div>
+      } @else {
+        
+        <!-- Loop pelas avaliações -->
+        @for (avaliacao of avaliacoes; track avaliacao.id) {
+          <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+              
+              <!-- Cabeçalho da avaliação -->
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                  <h5 class="mb-1">{{avaliacao.author}}</h5>
+                  <small class="text-muted">{{avaliacao.date}}</small>
+                </div>
+                
+                <!-- Estrelas (nota) -->
+                <div class="rating">
+                  @for (star of getEstrelas(avaliacao.rating); track $index) {
+                    @if (star === 1) {
+                      <i class="bi bi-star-fill text-warning"></i>
+                    } @else {
+                      <i class="bi bi-star text-muted"></i>
+                    }
+                  }
+                </div>
+              </div>
+              
+              <!-- Comentário -->
+              <p class="card-text mb-0">{{avaliacao.comment}}</p>
+              
+            </div>
+          </div>
+        }
+        
+      }
+      
+    </div>
+  </div>
+  
+</div>
