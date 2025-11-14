@@ -1,42 +1,50 @@
-<nav class="navbar" [class.scrolled]="isScrolled">
-    <div class="navbar-container">
-        <div class="navbar-logo">
-            <span class="logo-text">Jungleflix</span>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm"
+    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
 
-        <div class="navbar-menu">
-            <ul class="menu-list">
-                <li *ngFor="let item of menuItems; let i = index" class="menu-item" [class.active]="item.active"
-                    (click)="selectMenuItem(i)">
-                    <a href="javascript:void(0)">{{ item.label }}</a>
+    <div class="container-fluid">
+
+        <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
+            <i class="bi bi-mortarboard-fill me-2 fs-4"></i>
+            <span>Jungleflix</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3" routerLink="/" routerLinkActive="active">
+                        <i class="bi bi-people-fill me-1"></i>
+                        Início
+                    </a>
+
                 </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3" routerLink="/filmes" routerLinkActive="active">
+                        <i class="bi bi-file-text-fill me-1"></i>
+                        Filmes
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <a class="nav-link px-3" routerLink="/series" routerLinkActive="active">
+                        <i class="bi bi-file-text-fill me-1"></i>
+                        Séries
+                    </a>
+
+                </li>
+
             </ul>
         </div>
 
-        <div class="search-container" [class.active]="isSearchActive">
-            <input *ngIf="isSearchActive" type="text" class="search-input" placeholder="Buscar"
-                [(ngModel)]="searchQuery" (keyup.enter)="onSearch()" autofocus>
-            <button class="search-btn" (click)="toggleSearchActive()" title="Buscar">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
-            </button>
-        </div>
-
-        <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" title="Menu">
-            <span class="hamburger" [class.open]="isMobileMenuOpen"></span>
-            <span class="hamburger" [class.open]="isMobileMenuOpen"></span>
-            <span class="hamburger" [class.open]="isMobileMenuOpen"></span>
-        </button>
-    </div>
-
-    <div class="mobile-menu" [class.open]="isMobileMenuOpen">
-        <ul class="mobile-menu-list">
-            <li *ngFor="let item of menuItems; let i = index" class="mobile-menu-item" [class.active]="item.active"
-                (click)="selectMenuItem(i)">
-                <a href="javascript:void(0)">{{ item.label }}</a>
-            </li>
-        </ul>
     </div>
 </nav>

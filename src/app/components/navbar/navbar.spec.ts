@@ -10,7 +10,7 @@ describe('Navbar', () => {
     await TestBed.configureTestingModule({
       imports: [Navbar]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(Navbar);
     component = fixture.componentInstance;

@@ -1,5 +1,5 @@
 {
-  "name": "rec-angular-oficial",
+  "name": "rcp-angular",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:rec-angular-oficial": "node dist/rec-angular-oficial/server/server.mjs"
+    "serve:ssr:rcp-angular": "node dist/rcp-angular/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,

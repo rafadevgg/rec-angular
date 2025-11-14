@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "rec-angular-oficial": {
+    "rcp-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -66,10 +66,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "rec-angular-oficial:build:production"
+              "buildTarget": "rcp-angular:build:production"
             },
             "development": {
-              "buildTarget": "rec-angular-oficial:build:development"
+              "buildTarget": "rcp-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -101,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "d9f6bcbe-d837-4c7c-8bec-514f10888f14"
+    "analytics": "fb351de5-4dd2-4936-a9d2-56e1bc905263"
   }
 }
