@@ -15,15 +15,15 @@ export class ReviewService {
   // Injeta o HttpClient para fazer requisições HTTP
   private http = inject(HttpClient);
 
-  // URL base da API
-  private apiUrl = 'http://senai-streams.ddns.net';
+  // URL base da API (localhost)
+  private apiUrl = 'http://localhost:3000';
 
   /**
    * Busca todas as avaliações de um filme/série específico
    * @param contentId - ID do conteúdo
    * @returns Observable com array de avaliações
    */
-  buscarPorConteudo(contentId: number) {
+  buscarPorConteudo(contentId: string) {
     return this.http.get<Review[]>(`${this.apiUrl}/reviews?contentId=${contentId}`);
   }
 

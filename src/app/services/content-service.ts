@@ -15,8 +15,8 @@ export class ContentService {
   // Injeta o HttpClient para fazer requisições HTTP
   private http = inject(HttpClient);
 
-  // URL base da API
-  private apiUrl = 'http://senai-streams.ddns.net';
+  // URL base da API (localhost)
+  private apiUrl = 'http://localhost:3000';
 
   /**
    * Busca todos os filmes e séries
@@ -31,7 +31,7 @@ export class ContentService {
    * @param categoryId - ID da categoria
    * @returns Observable com array de conteúdos filtrados
    */
-  buscarPorCategoria(categoryId: number) {
+  buscarPorCategoria(categoryId: string) {
     return this.http.get<Content[]>(`${this.apiUrl}/contents?categoryId=${categoryId}`);
   }
 
@@ -40,7 +40,7 @@ export class ContentService {
    * @param id - ID do conteúdo
    * @returns Observable com o conteúdo encontrado
    */
-  buscarPorId(id: number) {
+  buscarPorId(id: string) {
     return this.http.get<Content>(`${this.apiUrl}/contents/${id}`);
   }
 }

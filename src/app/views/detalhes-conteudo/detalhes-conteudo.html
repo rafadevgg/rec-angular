@@ -14,50 +14,116 @@
   
   <!-- Se já carregou, mostra os detalhes -->
   @else {
-    <div class="row">
-      
-      <!-- Coluna da imagem -->
-      <div class="col-lg-4 mb-4">
-        <img [src]="conteudo.image" 
-             [alt]="conteudo.title" 
-             class="img-fluid rounded shadow">
-      </div>
-      
-      <!-- Coluna das informações -->
-      <div class="col-lg-8">
-        <div class="card shadow-sm border-0">
-          <div class="card-body p-4">
-            
-            <!-- Título -->
-            <h1 class="display-5 fw-bold mb-3">
+    <!-- Banner de fundo -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <div class="position-relative" style="height: 400px; overflow: hidden; border-radius: 15px;">
+          <img [src]="conteudo.banner" 
+               [alt]="conteudo.title" 
+               class="w-100 h-100" 
+               style="object-fit: cover; filter: brightness(0.5);">
+          <div class="position-absolute top-0 start-0 w-100 h-100" 
+               style="background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);"></div>
+          <div class="position-absolute bottom-0 start-0 p-4">
+            <h1 class="display-4 fw-bold text-white mb-2">
               {{conteudo.title}}
             </h1>
-            
-            <!-- Informações básicas -->
-            <div class="mb-4">
-              <span class="badge bg-primary me-2">
-                {{conteudo.releaseYear}}
-              </span>
+            <div class="d-flex gap-2 align-items-center">
+              <span class="badge bg-primary">{{conteudo.releaseYear}}</span>
               <span class="badge bg-secondary">
                 {{conteudo.type === 'movie' ? 'Filme' : 'Série'}}
               </span>
+              <span class="badge bg-warning text-dark">{{conteudo.rating}}</span>
+              @if (conteudo.duration > 0) {
+                <span class="badge bg-info">{{conteudo.duration}} min</span>
+              }
+              @if (conteudo.imdbRating > 0) {
+                <span class="badge bg-success">
+                  <i class="bi bi-star-fill"></i> {{conteudo.imdbRating}}
+                </span>
+              }
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      
+      <!-- Coluna da imagem -->
+      <div class="col-lg-3 mb-4">
+        <img [src]="conteudo.thumbnail" 
+             [alt]="conteudo.title" 
+             class="img-fluid rounded shadow"
+             style="width: 100%;">
+        
+        <!-- Estatísticas -->
+        <div class="card mt-3 shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="mb-3">Estatísticas</h6>
+            <div class="d-flex justify-content-between mb-2">
+              <span class="text-muted">
+                <i class="bi bi-eye me-1"></i> Visualizações
+              </span>
+              <strong>{{conteudo.views.toLocaleString('pt-BR')}}</strong>
+            </div>
+            <div class="d-flex justify-content-between">
+              <span class="text-muted">
+                <i class="bi bi-heart me-1"></i> Curtidas
+              </span>
+              <strong>{{conteudo.likes.toLocaleString('pt-BR')}}</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Coluna das informações -->
+      <div class="col-lg-9">
+        <div class="card shadow-sm border-0 mb-3">
+          <div class="card-body p-4">
             
-            <!-- Descrição -->
-            <h5 class="mb-3">Sinopse</h5>
+            <!-- Sinopse -->
+            <h5 class="mb-3">
+              <i class="bi bi-journal-text me-2"></i>
+              Sinopse
+            </h5>
             <p class="text-muted mb-4">
-              {{conteudo.description}}
+              {{conteudo.synopsis || conteudo.description}}
             </p>
+            
+            <!-- Diretor -->
+            @if (conteudo.director) {
+              <div class="mb-3">
+                <strong class="d-block mb-1">
+                  <i class="bi bi-camera-reels me-2"></i>
+                  Diretor:
+                </strong>
+                <span class="text-muted">{{conteudo.director}}</span>
+              </div>
+            }
+            
+            <!-- Elenco -->
+            @if (conteudo.cast && conteudo.cast.length > 0) {
+              <div class="mb-4">
+                <strong class="d-block mb-2">
+                  <i class="bi bi-people me-2"></i>
+                  Elenco:
+                </strong>
+                <div class="d-flex flex-wrap gap-2">
+                  @for (ator of conteudo.cast; track ator) {
+                    <span class="badge bg-light text-dark border">{{ator}}</span>
+                  }
+                </div>
+              </div>
+            }
             
             <!-- Botões de ação -->
             <div class="d-flex gap-2">
-              <!-- Botão voltar -->
               <a routerLink="/" class="btn btn-outline-secondary">
                 <i class="bi bi-arrow-left me-2"></i>
                 Voltar
               </a>
               
-              <!-- Botão ver avaliações -->
               <a [routerLink]="'/conteudo/' + conteudo.id + '/avaliacoes'" 
                  class="btn btn-primary">
                 <i class="bi bi-star-fill me-2"></i>

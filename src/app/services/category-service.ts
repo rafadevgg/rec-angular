@@ -15,8 +15,8 @@ export class CategoryService {
   // Injeta o HttpClient para fazer requisições HTTP
   private http = inject(HttpClient);
 
-  // URL base da API
-  private apiUrl = 'http://senai-streams.ddns.net';
+  // URL base da API (localhost)
+  private apiUrl = 'http://localhost:3000';
 
   /**
    * Busca todas as categorias disponíveis
@@ -31,7 +31,7 @@ export class CategoryService {
    * @param id - ID da categoria
    * @returns Observable com a categoria encontrada
    */
-  buscarCategoriaPorId(id: number) {
+  buscarCategoriaPorId(id: string) {
     return this.http.get<Category>(`${this.apiUrl}/categories/${id}`);
   }
 }
