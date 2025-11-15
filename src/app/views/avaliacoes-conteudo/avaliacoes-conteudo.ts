@@ -59,7 +59,6 @@ export class AvaliacoesConteudo implements OnInit {
           review.comment = r.comment ?? review.comment;
           // ensure required properties exist on Review
           review.author = r.author ?? r.authorName ?? '';
-          review.date = r.date ?? new Date().toISOString();
           return review;
         });
       }
