@@ -2,7 +2,9 @@
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Content } from '../shared/models/Content';
+import { CONTENT_IMAGES, DEFAULT_IMAGES } from '../shared/config/image.config';
 
 /**
  * Service responsável por buscar dados de filmes/séries na API
@@ -23,7 +25,9 @@ export class ContentService {
    * @returns Observable com array de conteúdos
    */
   buscarTodos() {
-    return this.http.get<Content[]>(`${this.apiUrl}/contents`);
+    return this.http.get<Content[]>(`${this.apiUrl}/contents`).pipe(
+      map(contents => contents.map(c => this.addImages(c)))
+    );
   }
 
   /**
@@ -32,7 +36,9 @@ export class ContentService {
    * @returns Observable com array de conteúdos filtrados
    */
   buscarPorCategoria(categoryId: string) {
-    return this.http.get<Content[]>(`${this.apiUrl}/contents?categoryId=${categoryId}`);
+    return this.http.get<Content[]>(`${this.apiUrl}/contents?categoryId=${categoryId}`).pipe(
+      map(contents => contents.map(c => this.addImages(c)))
+    );
   }
 
   /**
@@ -41,6 +47,21 @@ export class ContentService {
    * @returns Observable com o conteúdo encontrado
    */
   buscarPorId(id: string) {
-    return this.http.get<Content>(`${this.apiUrl}/contents/${id}`);
+    return this.http.get<Content>(`${this.apiUrl}/contents/${id}`).pipe(
+      map(c => this.addImages(c))
+    );
+  }
+
+  /**
+   * Adiciona imagens locais ao conteúdo
+   */
+  private addImages(content: Content): Content {
+    const images = CONTENT_IMAGES[content.id] || DEFAULT_IMAGES;
+    return {
+      ...content,
+      thumbnail: images.thumbnail,
+      banner: images.banner,
+      image: images.thumbnail
+    };
   }
 }

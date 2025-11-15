@@ -2,7 +2,9 @@
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Category } from '../shared/models/Category';
+import { CATEGORY_IMAGES, DEFAULT_IMAGES } from '../shared/config/image.config';
 
 /**
  * Service responsável por buscar dados de categorias na API
@@ -23,7 +25,12 @@ export class CategoryService {
    * @returns Observable com array de categorias
    */
   buscarCategorias() {
-    return this.http.get<Category[]>(`${this.apiUrl}/categories`);
+    return this.http.get<Category[]>(`${this.apiUrl}/categories`).pipe(
+      map(categories => categories.map(cat => ({
+        ...cat,
+        image: CATEGORY_IMAGES[cat.id] || DEFAULT_IMAGES.category
+      })))
+    );
   }
 
   /**
@@ -32,6 +39,11 @@ export class CategoryService {
    * @returns Observable com a categoria encontrada
    */
   buscarCategoriaPorId(id: string) {
-    return this.http.get<Category>(`${this.apiUrl}/categories/${id}`);
+    return this.http.get<Category>(`${this.apiUrl}/categories/${id}`).pipe(
+      map(cat => ({
+        ...cat,
+        image: CATEGORY_IMAGES[cat.id] || DEFAULT_IMAGES.category
+      }))
+    );
   }
 }

@@ -2,7 +2,9 @@
 
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { Review } from '../shared/models/Review';
+import { AVATARS, DEFAULT_IMAGES } from '../shared/config/image.config';
 
 /**
  * Service responsável por gerenciar avaliações na API
@@ -24,7 +26,12 @@ export class ReviewService {
    * @returns Observable com array de avaliações
    */
   buscarPorConteudo(contentId: string) {
-    return this.http.get<Review[]>(`${this.apiUrl}/reviews?contentId=${contentId}`);
+    return this.http.get<Review[]>(`${this.apiUrl}/reviews?contentId=${contentId}`).pipe(
+      map(reviews => reviews.map(review => ({
+        ...review,
+        authorAvatar: review.authorAvatar || this.getAvatar(review.authorName)
+      })))
+    );
   }
 
   /**
@@ -33,6 +40,26 @@ export class ReviewService {
    * @returns Observable com a avaliação criada
    */
   cadastrarAvaliacao(review: Review) {
-    return this.http.post<Review>(`${this.apiUrl}/reviews`, review);
+    const reviewComAvatar = {
+      ...review,
+      authorAvatar: review.authorAvatar || this.getAvatar(review.authorName)
+    };
+    
+    return this.http.post<Review>(`${this.apiUrl}/reviews`, reviewComAvatar);
+  }
+
+  /**
+   * Retorna um avatar baseado no nome (sempre o mesmo para o mesmo nome)
+   */
+  private getAvatar(authorName: string): string {
+    if (!authorName || AVATARS.length === 0) {
+      return DEFAULT_IMAGES.avatar;
+    }
+    
+    // Gera índice baseado no nome para consistência
+    const hash = authorName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const index = hash % AVATARS.length;
+    
+    return AVATARS[index];
   }
 }
