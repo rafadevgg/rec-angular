@@ -7,7 +7,7 @@ export class Review {
     
     constructor(
         public id = '',              // ID único da avaliação
-        public contentId = '',       // ID do filme/série avaliado
+        public contentId = '',       // ID do filme/série (agora é STRING)
         public authorName = '',      // Nome de quem fez a avaliação
         public authorAvatar = '',    // Avatar do autor
         public rating = 0,           // Nota de 1 a 5
@@ -22,14 +22,6 @@ export class Review {
 
     set author(value: string) {
         this.authorName = value;
-    }
-
-    get date(): string {
-        return ''; // A API não retorna data
-    }
-
-    set date(value: string) {
-        // Ignora, API não usa
     }
 
 }
