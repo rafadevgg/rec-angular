@@ -1,8 +1,5 @@
-<!-- src/app/views/lista-conteudos/lista-conteudos.html -->
-
 <div class="container py-5">
-  
-  <!-- Cabeçalho da página -->
+
   <div class="row mb-4">
     <div class="col">
       <div class="text-center mb-4">
@@ -16,41 +13,30 @@
       </div>
     </div>
   </div>
-  
-  <!-- Grid de conteúdos -->
+
   <div class="row">
     <div class="col">
-      
-      <!-- Se ainda não carregou (array vazio), mostra loading -->
+
       @if (conteudos.length === 0) {
-        <div class="text-center py-5">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Carregando...</span>
-          </div>
-          <p class="mt-3 text-muted">Carregando conteúdos...</p>
+      <div class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Carregando...</span>
         </div>
-      } 
-      
-      <!-- Se já carregou, mostra os cards -->
-      @else {
-        <div class="row g-4">
-          <!-- 
-            Loop pelos conteúdos
-            Para cada conteúdo, cria um card
-          -->
-          @for (conteudo of conteudos; track conteudo.id) {
-            <div class="col-md-6 col-lg-4 col-xl-3">
-              <!-- 
-                Componente reutilizável CardContent
-                Passa o conteúdo como propriedade [content]
-              -->
-              <app-card-content [content]="conteudo" />
-            </div>
-          }
-        </div>
+        <p class="mt-3 text-muted">Carregando conteúdos...</p>
+      </div>
       }
-      
+
+      @else {
+      <div class="row g-4">
+        @for (conteudo of conteudos; track conteudo.id) {
+        <div class="col-md-6 col-lg-4 col-xl-3">
+          <app-card-content [content]="conteudo" />
+        </div>
+        }
+      </div>
+      }
+
     </div>
   </div>
-  
+
 </div>

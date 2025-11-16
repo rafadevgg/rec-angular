@@ -1,68 +1,61 @@
-// src/app/shared/config/image.config.ts
-
-/**
- * SOLUÇÃO TEMPORÁRIA: Usando URLs externas do TMDB
- * Isso FUNCIONA 100% sem precisar configurar nada!
- */
-
 export const CONTENT_IMAGES: { [key: string]: { thumbnail: string; banner: string } } = {
-  '1': { // O Resgate Final
+  '1': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg',
     banner: 'https://image.tmdb.org/t/p/original/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg'
   },
-  '2': { // Stranger Things
+  '2': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/49WJfeN0moxb9IPfGn8AIqMGskD.jpg',
     banner: 'https://image.tmdb.org/t/p/original/56v2KjBlU4XaOv9rVYEQypROD7P.jpg'
   },
-  '3': { // Amor em Paris (Emily in Paris) - URLs alternativas
+  '3': {
     thumbnail: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=300&h=450&fit=crop',
     banner: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1920&h=1080&fit=crop'
   },
-  '4': { // The Office Brasil
+  '4': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg',
     banner: 'https://image.tmdb.org/t/p/original/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg'
   },
-  '5': { // A Casa Assombrada (The Haunting of Hill House)
+  '5': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/38PkhBGRQtmVx2drvPik3F42qHO.jpg',
     banner: 'https://images.unsplash.com/photo-1513002749550-c59d786b8e6c?w=1920&h=1080&fit=crop'
   },
-  '6': { // Breaking Bad
+  '6': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/ggFHVNu6YYI5L9pCfOacjizRGt.jpg',
     banner: 'https://image.tmdb.org/t/p/original/tsRy63Mu5cu8etL1X7ZLyf7UP1M.jpg'
   },
-  '7': { // Planeta Terra: Vida Selvagem - URLs alternativas
+  '7': {
     thumbnail: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=300&h=450&fit=crop',
     banner: 'https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=1920&h=1080&fit=crop'
   },
-  '8': { // Blade Runner 2099
+  '8': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/gajva2L0rPYkEWjzgFlBXCAVBE5.jpg',
     banner: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?w=1920&h=1080&fit=crop'
   },
-  '9': { // O Mistério da Ilha (Shutter Island)
+  '9': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/4GDy0PHYX3VRXUtwK5ysFbg3kEx.jpg',
     banner: 'https://images.unsplash.com/photo-1541417904950-b855846fe074?w=1920&h=1080&fit=crop'
   },
-  '10': { // Procurando Nemo (Finding Nemo)
+  '10': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/eHuGQ10FUzK1mdOY69wF5pGgEf5.jpg',
     banner: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1920&h=1080&fit=crop'
   },
-  '11': { // Indiana Jones: A Última Cruzada - URLs alternativas
+  '11': {
     thumbnail: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=300&h=450&fit=crop',
     banner: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=1920&h=1080&fit=crop'
   },
-  '12': { // Dark (série alemã) - URLs alternativas
+  '12': {
     thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=300&h=450&fit=crop',
     banner: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&h=1080&fit=crop'
   },
-  '13': { // Matrix
+  '13': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/f89U3ADr1oiB1s9GkdPOEpXUk5H.jpg',
     banner: 'https://image.tmdb.org/t/p/original/vybQQ7w7vGvF53IsGD0y0JSgIsA.jpg'
   },
-  '14': { // Game of Thrones
+  '14': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/1XS1oqL89opfnbLl8WnZY1O1uJx.jpg',
     banner: 'https://image.tmdb.org/t/p/original/suopoADq0k8YZr4dQXcU6pToj6s.jpg'
   },
-  '15': { // Interestelar
+  '15': {
     thumbnail: 'https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg',
     banner: 'https://image.tmdb.org/t/p/original/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg'
   }
