@@ -17,7 +17,7 @@ export class ListaConteudos implements OnInit {
 
   protected conteudos: Content[] = [];
 
-  protected titulo = 'Todos os Filmes e Séries';
+  protected titulo = 'Filmes e Séries';
 
   ngOnInit(): void {
 
